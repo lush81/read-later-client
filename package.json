@@ -1,6 +1,6 @@
 {
-  "name": "web-peek",
-  "version": "0.0.1",
+ "name": "read-later-client",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -19,8 +19,19 @@
     "sanitizer": "^0.1.1",
     "static-favicon": "~1.0.0",
     "jquery": "1.11.2",
-    "react": "^0.13.1"
+    "react": "^0.13.1",
+     "express": "~4.9.x", 
+    "superagent": "^0.21.0"
   },
+   "engines": {
+    "node": "0.10.x"
+  },
+   
+   "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "devDependencies": {
     "chai": "^2.1.2",
     "hippie": "^0.3.0",
