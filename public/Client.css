@@ -1,0 +1,95 @@
+ .headerMain {
+    display:table;
+    margin-left:130px;
+    height:70px;
+    width:1250px;
+   border-bottom: 1px solid #ABA5A5;
+}
+
+/*#header {
+ display: table-cell;
+}
+*/
+
+a {
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+    color: blue;
+} 
+a: visited { 
+    /*text-decoration: underline; /* Добавляем подчеркивание при наведении курсора на ссылку */
+    color: blue; /* Ссылка голубого цвета */
+}
+b{
+  color: black;
+}
+
+h3{
+    padding-top:8px;
+    padding-right:8px;
+    padding-left:8px;
+    padding-bottom:8px;
+  display: inline-block;
+}   
+
+.readNow{
+    /*height:40px!important;*/
+    width:100px;
+    display: table-cell;
+}
+
+h3:hover{
+    background-color: #A2E2E7;
+}
+
+.search{
+    display: table-cell;
+}
+
+.centerHeader{
+    margin-left:150px;
+   display: table-cell;
+}
+
+.leftHeader{
+    display: table-cell;
+    padding-left: 190px;
+    padding-right: 50px;
+}
+
+.inputSearch{
+    border:0;
+}
+.article{
+    height:320px;
+    width:260px;
+    float:left;
+    margin-right:100px;
+  display: inline-block;
+  border-bottom: 1px solid #ABA5A5;
+}
+
+.footer{
+  display:block;
+  clear:both;
+}
+
+.titleArticle{
+color:black;
+}
+
+.content{
+    width:1080px;
+    margin-left:130px;
+    display:block;
+}
+.flash{
+    width: 100%;
+    position: fixed;
+	z-index: 99999; 
+    color: white; 
+    font-size: 18px;
+    text-align: center; 
+    padding: 20px 0px; 
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background: green;
+}
