@@ -2,6 +2,7 @@ var React = require("react");
 var _ = require("underscore");
 var ArticleComponent = require("./ArticleComponent");
 //var ProductComponent = require('../components/ProductComponent');
+var { into, filter, compose, map, take } = require('transducers.js');
 
 var ContentArticlesComponent = React.createClass({
   render: function() {

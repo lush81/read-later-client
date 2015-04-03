@@ -1,6 +1,8 @@
 var React = require("react");
 var _ = require("underscore");
 var ToolBarActions = require('../../action/ToolBarActions');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var AddArticleComponent = React.createClass({
   addArticle: function(event) {
@@ -15,13 +17,13 @@ var AddArticleComponent = React.createClass({
       return (
         <div className = "addArticleComp">
         <div className = "readNow">
-                    <h3><a href = "#" onClick = "">Read Now</a></h3>
+                    <Link to="app">Read Now</Link>
                 </div>
                 <div className = "search">
-                    <!--<form>-->
+                    <form onSubmit={this.onAddUrlServer}>
                     <input className = "inputUrl" type = "text" placeholder = "http://..." />
-                    <button  type = "submit" onClick = {this.addArticle}>+ ADD URL</button>
-                    <!--</form>-->
+                    <button  type = "submit"  onClick = {this.addArticle}>+ ADD URL</button>
+                    </form>
                 </div>
         </div>
             )
