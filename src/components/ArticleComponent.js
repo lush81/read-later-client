@@ -1,9 +1,13 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+
 var shortBody;
+
 var ArticleComponent = React.createClass({
    
  shortContent(){
-    shortBody = this.props.article.content.substr(0,300)+"...";
+   var shortBody = this.props.article.content.substr(0,300)+"...";
     return shortBody;
   },
   
@@ -15,9 +19,9 @@ return (
       <div className = "content">
          <div className ="article panel panel-danger">
            <div >
-               <a className = "titleArticle" href = "#" onClick = {this.a}>
+                <Link to="articles" params={{articleId: this.props.article.url}}>
                   <h1><b>{this.props.article.title}</b></h1>
-               </a>
+                </Link>
             </div>
            <div className = "bodyArticle">{this.shortContent()} ...</div>
     <!--div className = "bodyArticle">{this.props.article.content}</div>-->

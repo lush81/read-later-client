@@ -10,7 +10,7 @@ app.get('/', function(request, response) {
      response.render('public/index.html'); 
 });
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+/*var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 function start () {
   var xhr = new XMLHttpRequest();
@@ -24,6 +24,6 @@ function start () {
 }
 //'url=http://swannodette.github.io/2015/03/10/scripting-clojurescript-with-javascript/'
 
-start();
+start();*/
 module.exports = app;
 
