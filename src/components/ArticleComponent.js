@@ -19,7 +19,7 @@ return (
       <div className = "content">
          <div className ="article panel panel-danger">
            <div >
-                <Link to="articles" params={{articleId: this.props.article.url}}>
+                <Link to="oneArticle" params={{articleId: this.props.article.id}}>
                   <h1><b>{this.props.article.title}</b></h1>
                 </Link>
             </div>

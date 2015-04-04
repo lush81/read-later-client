@@ -54,7 +54,7 @@
 	var AppComponent = __webpack_require__(1);
 	var ContentArticlesComponent = __webpack_require__(2);
 	var comp = __webpack_require__(3);
-	//var articles = require('./components/Articles');
+	var ArticleComponent = __webpack_require__(9);
 	//var articles = require('./stores/FirebaseStore');
 	
 	window.React = React;
@@ -64,7 +64,8 @@
 	var routes = React.createElement(
 	  Route,
 	  { name: "app", path: "/", handler: AppComponent },
-	  React.createElement(Route, { name: "articles", path: "/articles/:articleId", handler: comp }),
+	  React.createElement(Route, { name: "listArticles", path: "/articles", handler: comp }),
+	  React.createElement(Route, { name: "oneArticle", path: "/articles/:articleId", handler: comp }),
 	  React.createElement(DefaultRoute, { handler: ContentArticlesComponent })
 	);
 	
@@ -89,10 +90,10 @@
 	var Router = __webpack_require__(5);
 	var RouteHandler = Router.RouteHandler;
 	
-	var ToolsBarComponent = __webpack_require__(8);
-	var FooterBarComponent = __webpack_require__(9);
+	var ToolsBarComponent = __webpack_require__(6);
+	var FooterBarComponent = __webpack_require__(7);
 	var ContentArticlesComponent = __webpack_require__(2);
-	var articles = __webpack_require__(10);
+	var articles = __webpack_require__(8);
 	//var articles = require('./Art');
 	//var articles = require('../stores/FirebaseStore');
 	
@@ -125,8 +126,8 @@
 	var Reflux = __webpack_require__(11);
 	
 	var _ = __webpack_require__(33);
-	var ArticleComponent = __webpack_require__(6);
-	var ListArticlesStore = __webpack_require__(7);
+	var ArticleComponent = __webpack_require__(9);
+	var ListArticlesStore = __webpack_require__(10);
 	
 	var ContentArticlesComponent = React.createClass({
 	  displayName: "ContentArticlesComponent",
@@ -138,17 +139,14 @@
 	  },
 	
 	  render: function render() {
-	    //console.log(this.state.articles);
-	    //var articlesList;
 	    var articlesList = [];
 	    var articlesListObj = this.state.articles;
-	    //var obj = {};
 	
 	    for (var key in articlesListObj) {
+	      articlesListObj[key].id = key;
 	      articlesList.push(articlesListObj[key]);
 	    }
-	    //arr.push(obj);
-	    // console.log(arr);
+	
 	    var articlesList1 = articlesList.map(function (article, index) {
 	      return React.createElement(ArticleComponent, {
 	        article: article,
@@ -279,122 +277,12 @@
 	"use strict";
 	
 	var React = __webpack_require__(4);
-	var Router = __webpack_require__(5);
-	var Link = Router.Link;
-	
-	var shortBody;
-	
-	var ArticleComponent = React.createClass({
-	   displayName: "ArticleComponent",
-	
-	   shortContent: function shortContent() {
-	      var shortBody = this.props.article.content.substr(0, 300) + "...";
-	      return shortBody;
-	   },
-	
-	   render: function render() {
-	
-	      return React.createElement(
-	         "div",
-	         { className: "contentComp" },
-	         React.createElement(
-	            "div",
-	            { className: "contentMain" },
-	            React.createElement(
-	               "div",
-	               { className: "content" },
-	               React.createElement(
-	                  "div",
-	                  { className: "article panel panel-danger" },
-	                  React.createElement(
-	                     "div",
-	                     null,
-	                     React.createElement(
-	                        Link,
-	                        { to: "articles", params: { articleId: this.props.article.url } },
-	                        React.createElement(
-	                           "h1",
-	                           null,
-	                           React.createElement(
-	                              "b",
-	                              null,
-	                              this.props.article.title
-	                           )
-	                        )
-	                     )
-	                  ),
-	                  React.createElement(
-	                     "div",
-	                     { className: "bodyArticle" },
-	                     this.shortContent(),
-	                     " ..."
-	                  ),
-	                  React.createElement(
-	                     "div",
-	                     { className: "urlArticle" },
-	                     React.createElement(
-	                        "a",
-	                        { href: "#", onClick: this.b },
-	                        this.props.article.url
-	                     )
-	                  )
-	               )
-	            )
-	         )
-	      );
-	   }
-	});
-	
-	module.exports = ArticleComponent;
-	//div className = "bodyArticle">{this.props.article.content}</div>-->
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var Reflux = __webpack_require__(11);
-	
-	//var FirebaseStore = require('./FirebaseStore');
-	//var FirebaseActions = require('../action/FirebaseActions');
-	
-	var ListArticlesActions = __webpack_require__(34);
-	
-	var Firebase = __webpack_require__(73);
-	var fb = new Firebase("https://final-project-lush.firebaseio.com/");
-	
-	var _articles = [];
-	
-	//fb.child("articles").on("value",  function(snapshot) {console.log(snapshot.val());})
-	
-	var ListArticlesStore = Reflux.createStore({
-	  listenables: ListArticlesActions,
-	
-	  init: function init() {
-	    fb.child("articles").on("value", ListArticlesActions.receiveListArticles);
-	  },
-	  receiveListArticles: function receiveListArticles(snapshot) {
-	    _articles = snapshot.val();
-	    this.trigger(_articles);
-	  }
-	});
-	
-	module.exports = ListArticlesStore;
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var React = __webpack_require__(4);
 	var _ = __webpack_require__(33);
-	var AddArticleComponent = __webpack_require__(35);
-	var SearchComponent = __webpack_require__(36);
+	var AddArticleComponent = __webpack_require__(34);
+	var SearchComponent = __webpack_require__(35);
 	//var art = require('../Articles');
-	var art = __webpack_require__(37);
-	var ListArticlesActions = __webpack_require__(34);
+	var art = __webpack_require__(36);
+	var ListArticlesActions = __webpack_require__(37);
 	
 	var ToolsBarComponent = React.createClass({
 	    displayName: "ToolsBarComponent",
@@ -434,7 +322,7 @@
 	//{this.props.children}-->
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -471,7 +359,7 @@
 	module.exports = FooterBarComponent;
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -490,6 +378,116 @@
 				content: "What comes to mind when you hear the term “Machine Learning”? " + "A bunch of programmers hunched over their computers in a dark room, working on something " + "completely virtual & divorced from reality? A group of scientists creating a Frankenstein" + "monster\tthat has no resemblance to us whatsoever?" + "It may certainly seem that way, but you’d be wrong. The accomplishments of Machine Learning " + "(Self-driving cars, human handwriting parsing, IBM Watson) are certainly very technological " + "in nature. But in truth, Machine Learning is equal parts Art and Philosophy, incorporating deep " + "Epistemological insights in order to better make sense of the world. Machine Learning is in essence,",
 				mark: "unread"
 	}];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(4);
+	var Router = __webpack_require__(5);
+	var Link = Router.Link;
+	
+	var shortBody;
+	
+	var ArticleComponent = React.createClass({
+	   displayName: "ArticleComponent",
+	
+	   shortContent: function shortContent() {
+	      var shortBody = this.props.article.content.substr(0, 300) + "...";
+	      return shortBody;
+	   },
+	
+	   render: function render() {
+	
+	      return React.createElement(
+	         "div",
+	         { className: "contentComp" },
+	         React.createElement(
+	            "div",
+	            { className: "contentMain" },
+	            React.createElement(
+	               "div",
+	               { className: "content" },
+	               React.createElement(
+	                  "div",
+	                  { className: "article panel panel-danger" },
+	                  React.createElement(
+	                     "div",
+	                     null,
+	                     React.createElement(
+	                        Link,
+	                        { to: "oneArticle", params: { articleId: this.props.article.id } },
+	                        React.createElement(
+	                           "h1",
+	                           null,
+	                           React.createElement(
+	                              "b",
+	                              null,
+	                              this.props.article.title
+	                           )
+	                        )
+	                     )
+	                  ),
+	                  React.createElement(
+	                     "div",
+	                     { className: "bodyArticle" },
+	                     this.shortContent(),
+	                     " ..."
+	                  ),
+	                  React.createElement(
+	                     "div",
+	                     { className: "urlArticle" },
+	                     React.createElement(
+	                        "a",
+	                        { href: "#", onClick: this.b },
+	                        this.props.article.url
+	                     )
+	                  )
+	               )
+	            )
+	         )
+	      );
+	   }
+	});
+	
+	module.exports = ArticleComponent;
+	//div className = "bodyArticle">{this.props.article.content}</div>-->
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var Reflux = __webpack_require__(11);
+	
+	//var FirebaseStore = require('./FirebaseStore');
+	//var FirebaseActions = require('../action/FirebaseActions');
+	
+	var ListArticlesActions = __webpack_require__(37);
+	
+	var Firebase = __webpack_require__(73);
+	var fb = new Firebase("https://final-project-lush.firebaseio.com/");
+	
+	var _articles = [];
+	
+	//fb.child("articles").on("value",  function(snapshot) {console.log(snapshot.val());})
+	
+	var ListArticlesStore = Reflux.createStore({
+	  listenables: ListArticlesActions,
+	
+	  init: function init() {
+	    fb.child("articles").on("value", ListArticlesActions.receiveListArticles);
+	  },
+	  receiveListArticles: function receiveListArticles(snapshot) {
+	    _articles = snapshot.val();
+	    this.trigger(_articles);
+	  }
+	});
+	
+	module.exports = ListArticlesStore;
 
 /***/ },
 /* 11 */
@@ -4243,16 +4241,6 @@
 
 	"use strict";
 	
-	var Reflux = __webpack_require__(11);
-	
-	module.exports = Reflux.createActions(["receiveListArticles", "addArticle", "filterChange"]);
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
 	var React = __webpack_require__(4);
 	var _ = __webpack_require__(33);
 	//var ToolBarActions = require('../../action/ToolBarActions');
@@ -4299,14 +4287,14 @@
 	module.exports = AddArticleComponent;
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var React = __webpack_require__(4);
 	var _ = __webpack_require__(33);
-	var art = __webpack_require__(37);
+	var art = __webpack_require__(36);
 	
 	var SearchComponent = React.createClass({
 	  displayName: "SearchComponent",
@@ -4338,7 +4326,7 @@
 	module.exports = SearchComponent;
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4357,6 +4345,16 @@
 				content: "What comes to mind when you hear the term “Machine Learning”? " + "A bunch of programmers hunched over their computers in a dark room, working on something " + "completely virtual & divorced from reality? A group of scientists creating a Frankenstein" + "monster\tthat has no resemblance to us whatsoever?" + "It may certainly seem that way, but you’d be wrong. The accomplishments of Machine Learning " + "(Self-driving cars, human handwriting parsing, IBM Watson) are certainly very technological " + "in nature. But in truth, Machine Learning is equal parts Art and Philosophy, incorporating deep " + "Epistemological insights in order to better make sense of the world. Machine Learning is in essence,",
 				mark: "unread"
 	}];
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var Reflux = __webpack_require__(11);
+	
+	module.exports = Reflux.createActions(["receiveListArticles", "addArticle", "filterChange"]);
 
 /***/ },
 /* 38 */

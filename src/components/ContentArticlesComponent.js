@@ -15,17 +15,15 @@ var ContentArticlesComponent = React.createClass({
   
    
   render: function() {
-  //console.log(this.state.articles);
-    //var articlesList;
     var articlesList=[];
     var articlesListObj = this.state.articles;
-    //var obj = {};
     
-    for (var key in articlesListObj) {
-      articlesList.push(articlesListObj[key]);
-    }
-    //arr.push(obj);
-   // console.log(arr);
+  
+ for (var key in articlesListObj){
+ articlesListObj[key].id = key;
+    articlesList.push(articlesListObj[key]);
+  }
+  
    var articlesList1 = articlesList.map(function(article, index){
       return( <ArticleComponent
          article={article}

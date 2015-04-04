@@ -6,7 +6,7 @@ var DefaultRoute = Router.DefaultRoute;
 var AppComponent = require('./components/AppComponent');
 var ContentArticlesComponent = require('./components/ContentArticlesComponent');
 var comp = require('./components/comp');
-//var articles = require('./components/Articles');
+var ArticleComponent = require('./components/ArticleComponent');
 //var articles = require('./stores/FirebaseStore');
 
 
@@ -16,7 +16,8 @@ var Route = Router.Route;
 
 var routes = (
   <Route name="app" path="/" handler={AppComponent} >
-     <Route name="articles" path="/articles/:articleId" handler={comp} />
+     <Route name="listArticles" path="/articles" handler={comp} />
+     <Route name="oneArticle" path="/articles/:articleId" handler={comp} />
      <DefaultRoute handler={ContentArticlesComponent}/>
   </Route>
 );
