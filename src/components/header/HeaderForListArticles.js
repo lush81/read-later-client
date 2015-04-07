@@ -43,25 +43,25 @@ var HeaderForListArticles = React.createClass({
      var content = this.state.read ? 'Show All' : 'Show "unread" only';
       return (
         <div className = "headerMain">
-        <div className = "addArticleComp">
-        <div className = "readNow">
-                    <Link to="app">Read Now</Link>
-                </div>
-                <div className = "search">
-                    <form onSubmit={this.onAddUrlServer}>
-                    <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
-                    <input  type = "submit" value="+ ADD URL"/>
-                    </form>
-                </div>
-        </div>
+          <div className = "addArticleComp">
+            <div className = "readNow">
+               <Link to="app">Read Now</Link>
+            </div>
+            <div className = "search">
+               <form onSubmit={this.onAddUrlServer}>
+                 <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
+                 <input  type = "submit" value="+ ADD URL"/>
+               </form>
+            </div>
+         </div>
         <div className = "readComp">
-         <a href="#" onClick={this.readFilter}>{content}</a>
-       </div>
+           <a href="#" onClick={this.readFilter}>{content}</a>
+        </div>
         <div className= "leftHeader">
          <!-- <input className = "inputSearch" type = "search" placeholder = "Search" ref='search' value=                 {this.state.search} onKeyUp={this.onChangeSearch} /> -->
-         <input className = "inputSearch" type = "text" placeholder = "Search" ref='search'  onChange ={this.onChangeSearch} />
+           <input className = "inputSearch" type = "text" placeholder = "Search" ref='search'  onChange ={this.onChangeSearch} />
        </div>
-        </div>
+   </div>
             )
   }
 })

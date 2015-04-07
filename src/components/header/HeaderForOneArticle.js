@@ -15,50 +15,44 @@ var HeaderForOneArticle = React.createClass({
   getInitialState: function() {
     return FilterStore.getFilters();
   },
-  readFilter: function(e) {
-    e.preventDefault();
-    FilterActions.readFilter(this.state.read);//***
-  },
-    onAddUrlServer: function(e) {
+  
+  onAddUrlServer: function(e) {
     e.preventDefault();
       console.log('aa')
     var value = this.refs.url.getDOMNode().value.trim();
     this.refs.url.getDOMNode().value = '';
     this.props.onAddUrlServer(value);
   },
-  onChangeSearch: function(event) {
-      //event.preventDefault();
- var value = event.target.value;
-    //this.setState({ search: this.refs.search.getDOMNode().value });
-      //SearchActions.search(this.refs.search.getDOMNode().value);
-     var val = React.findDOMNode(this.refs.search).value.trim();
-     console.log('val')
-    // FilterActions.search(value)
-   },
+ removeArticle: function(e) {
+    e.preventDefault();
+   // OneArticleActions.removeArticle(this.getParams().id, this);
+    OneArticleActions.removeArticle();
+  },
+
+  changeReadState: function(e) {
+    e.preventDefault();
+   // OneArticleActions.changeReadState(this.getParams().id);
+     OneArticleActions.changeReadState();
+  },
   
   render: function() {
-     var content = this.state.read ? 'Show All' : 'Show "unread" only';
+  var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
       return (
         <div className = "headerMain">
-        <div className = "addArticleComp">
-        <div className = "readNow">
-                    <Link to="app">Read Now</Link>
-                </div>
-                <div className = "search">
-                    <form onSubmit={this.onAddUrlServer}>
-                    <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
-                    <input  type = "submit" value="+ ADD URL"/>
-                    </form>
-                </div>
+         <div className = "addArticleComp">
+           <div className = "readNow">
+              <Link to="app">Read Now</Link>
+           </div>
+           <div className = "search">
+              <form onSubmit={this.onAddUrlServer}>
+                 <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
+                 <input  type = "submit" value="+ ADD URL"/>
+              </form>
+           </div>
         </div>
-        <div className = "readComp">
-         <a href="#" onClick={this.readFilter}>{content}</a>
-       </div>
-        <div className= "leftHeader">
-         <!-- <input className = "inputSearch" type = "search" placeholder = "Search" ref='search' value=                 {this.state.search} onKeyUp={this.onChangeSearch} /> -->
-         <input className = "inputSearch" type = "text" placeholder = "Search" ref='search'  onChange ={this.onChangeSearch} />
-       </div>
-        </div>
+           <a className='remove' href='#' onClick={this.removeArticle}>Remove</a>
+           <a className='readComp' href='#' onClick={this.changeReadState}>{readState}</a>
+</div>
             )
   }
 })

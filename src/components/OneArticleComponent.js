@@ -2,7 +2,7 @@ var React = require("react");
 var Reflux = require('reflux');
 var Router = require('react-router'); 
 
-var AddUrlComponent = require('./header/AddUrlComponent');
+var HeaderForOneArticle = require('./header/HeaderForOneArticle');
 
 var ArticleForOne = require('./ArticleForOne');
 
@@ -25,25 +25,10 @@ var OneArticleComponent = React.createClass({
        article: OneArticleStore.getArticle(this.id)
     }
   },
-
-  onArticleUpdate: function(articles) {
-    this.setState({
-      //article: OneArticleStore.getArticle(this.getParams().id)
-      article: OneArticleStore.getArticle()
-    });
+   contextTypes: {
+    router: React.PropTypes.func
   },
-
-  removeArticle(e) {
-    e.preventDefault();
-   // OneArticleActions.removeArticle(this.getParams().id, this);
-    OneArticleActions.removeArticle();
-  },
-
-  changeReadState(e) {
-    e.preventDefault();
-   // OneArticleActions.changeReadState(this.getParams().id);
-     OneArticleActions.changeReadState();
-  },
+  
 
   render() {
     var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
@@ -51,21 +36,13 @@ var OneArticleComponent = React.createClass({
     var articlesList=[];
        var articlesListObj = this.state.article;
           console.log(articlesListObj)
-        
+        console.log(this.context.router.getCurrentParams()['articleId'])
     
     return (
       <div className ="oneArtComp" >
         
           <div className='article_actions'>
-      <AddUrlComponent/>
-            <a className='remove' href='#' onClick={this.removeArticle}>Remove</a>
-            <a className='read' href='#' onClick={this.changeReadState}>{readState}</a>
-          </div>
-    
-      <div className='main'>
-          <div className='article'>
-            <ArticleForOne article={this.state.article} />
-          </div>
+     <HeaderForOneArticle/>
         </div>
       </div>
     );

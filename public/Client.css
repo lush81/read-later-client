@@ -47,6 +47,9 @@ h3:hover{
 .readComp{
    display: table-cell;
 }
+.remove{
+   display: table-cell;
+}
 
 .centerHeader{
     margin-left:150px;
