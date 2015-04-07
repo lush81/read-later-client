@@ -1,13 +1,18 @@
 var Reflux = require('reflux');
 
+var FirebaseStore = require('../stores/FirebaseStore');
 var FilterActions = require('../actions/FilterActions');
+var ListArticlesActions = require('../actions/ListArticlesActions');
 
 var FilterStore = Reflux.createStore({
   listenables: FilterActions,
 
   init: function() {
+   this.listenTo(FirebaseStore, ListArticlesActions.receiveArticles);//***
+   this.articles = {};
+    
     this._filters = {
-      read: true,
+     read: this.articles.read,
       search: ''
     }
   },

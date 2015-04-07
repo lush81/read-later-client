@@ -1,9 +1,12 @@
  .headerMain {
     display:table;
-    margin-left:130px;
+  /*  margin-left:130px;*/
     height:70px;
-    width:1250px;
-   border-bottom: 1px solid #ABA5A5;
+    width:100%;
+ /*  border-bottom: 1px solid #ABA5A5;*/
+     background: rgba(247, 233, 233, 0.95);
+  border-bottom: 1px solid #ddd;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
 
 /*#header {
@@ -35,8 +38,16 @@ h3{
     /*height:40px!important;*/
     width:100px;
     display: table-cell;
+  padding-left:65px;
 }
-
+.addUrl{
+  border:none;
+  padding-top: 6px;
+  padding-right: 6px;
+   padding-bottom:6px;
+  border-radius:5px;
+   background-color: rgb(209, 195, 211);;
+}
 h3:hover{
     background-color: #A2E2E7;
 }
@@ -62,31 +73,65 @@ h3:hover{
     padding-right: 50px;
 }
 
-.inputSearch{
-    border:0;
+.inputSearch, .inputUrl{
+  line-height: normal;
+    background: 0 0;
+  border: none;
+  border-bottom: 1px solid #b9dde7;
+   color: inherit;
+  font: inherit;
+  margin: 0;
+    padding: 8px 0;
 }
-.article{
-    height:320px;
-    width:260px;
+.article, .artForOneComp{
+   border-radius:7px;
+    width:300px;
     float:left;
-    margin-right:100px;
+   /* margin-right:100px;*/
   display: inline-block;
-  border-bottom: 1px solid #ABA5A5;
+  background: #F7EBEB;
+  border-bottom: 1px solid #BBA9A9;
+    border: 1px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+  box-sizing: border-box;
+ margin: 30px 30px 0 0;
+  padding: 10px 30px 30px;
+  
+    font: 16px/24px "Open Sans",Helvetica,Arial,sans-serif;
+  color: #5d5d5d;
 }
-
+.artForOneComp{
+  margin-left:175px;
+   width:795px;
+}
+form{
+  padding-top:25px;
+}
 .footer{
   display:block;
   clear:both;
 }
-
+.oneArtComp{
+  background: linear-gradient(#e0a8ec, #6b6a95);
+}
+.footerComp{
+  background: linear-gradient(#e0a8ec, #6b6a95);
+  width:100%;
+ }
 .titleArticle{
 color:black;
 }
-
+.urlArticle{
+  padding-top:25px;
+}
 .content{
-    width:1080px;
+   width:1080px;
     margin-left:130px;
     display:block;
+   /* display: inline-block;*/
+  font-size: 14px;
+ /* width: 47.5%;*/
+  vertical-align: top;
 }
 .flash{
     width: 100%;

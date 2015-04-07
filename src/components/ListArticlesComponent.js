@@ -21,7 +21,7 @@ var ListArticlesComponent = React.createClass({
   },
      
   render: function() {
-       var articlesList=[];
+      var articlesList=[];
        var articlesListObj = this.state.articles;
           console.log(articlesListObj)
   
@@ -29,7 +29,7 @@ var ListArticlesComponent = React.createClass({
           articlesListObj[key].id = key;
           articlesList.push(articlesListObj[key]);
        }
-  
+  console.log("lc   " +  articlesList)
       var articlesList1 = articlesList.map(function(article, id){
          return( 
            <ArticleForList
@@ -39,17 +39,16 @@ var ListArticlesComponent = React.createClass({
          )
       }
      )
+   
+    
     return (
     <div className = "listArticlesComp">
       <div className = "head">
-      <HeaderForListArticles/>
-        <!--<AddUrlComponent />-->
-         <!--<ReadComponent />-->
-         <!--<SearchComponent />-->
-      </div>
+         <HeaderForListArticles/>
+       </div>
         <div className='main-container'>
           <div className='main'>
-            {articlesList1}
+           {articlesList1}
           </div>
       </div>
     </div>

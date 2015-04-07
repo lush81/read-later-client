@@ -8,7 +8,7 @@ var Link = Router.Link;
 
 var FilterStore = require('../../stores/FilterStore');
 var FilterActions = require('../../actions/FilterActions');
-
+var OneArticleActions = require('../../actions/ListArticlesActions');
 var HeaderForOneArticle = React.createClass({
    mixins: [Reflux.connect(FilterStore)],
 
@@ -46,7 +46,7 @@ var HeaderForOneArticle = React.createClass({
            <div className = "search">
               <form onSubmit={this.onAddUrlServer}>
                  <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
-                 <input  type = "submit" value="+ ADD URL"/>
+                 <input className = "addUrl" type = "submit" value="+ ADD URL"/>
               </form>
            </div>
         </div>

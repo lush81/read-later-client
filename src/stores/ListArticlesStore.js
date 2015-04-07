@@ -19,11 +19,11 @@ var ListArticlesStore = Reflux.createStore({
     this.articles = {};
   },
 
-/*  onFilterChange: function(filters) {
+  onFilterChange: function(filters) {
     this.filters = filters;
     this.trigger(this.getArticles())
   },
-*/
+
   onReceiveArticles: function(articles) {
     this.articles = articles || {};
     this.trigger(this.getArticles());
@@ -35,40 +35,27 @@ var ListArticlesStore = Reflux.createStore({
     }.bind(this))
   },
 
-   getArticle: function(id) {///*****
-    console.log("u"+id)
-    console.log(this.articles);
-      var articlesList=[];
-       var articlesListObj = this.articles;
-          //console.log(articlesListObj)
-  
-       for (var key in articlesListObj){
-          articlesListObj[key].id = key;
-          articlesList.push(articlesListObj[key]);
+   getArticle: function(id1) {///*****
+     var articlesList=[];
+     var articlesListObj = this.articles;
+       
+      for (var key in articlesListObj){
+        articlesListObj[key].id = key;
+        articlesList.push(articlesListObj[key]);
        }
-  
-      var article = articlesList.filter(function(a){
-         return a.id = id})[0]; 
-     console.log("a"+article)
-        return article},
+
+     var article = articlesList.filter(function(a){
+         return a.id == id1})[0]; 
+   
+    return article;
+   },
   
   getArticles: function() {
     var articles = this.articles;
     console.log("fff"+articles)
     return articles
-    /*var transformations = [];
-
-    if (this.filters.search) {
-      let search = RegExp(this.filters.search, 'i');
-      transformations.push(filter(([_, a]) => a.title.match(search) || a.url.match(search)));
-    }
-
-    if (this.filters.unreadOnly) {
-      transformations.push(filter(([_, a]) => !a.read));
-    }
-
-    return seq(articles, compose.apply(null, transformations));*/
-  }
+  } 
+   
 });
 
 

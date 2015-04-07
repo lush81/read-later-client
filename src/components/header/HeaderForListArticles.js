@@ -17,18 +17,20 @@ var HeaderForListArticles = React.createClass({
     return FilterStore.getFilters();
   },
   readFilter: function(e) {
-    e.preventDefault();
+   // e.preventDefault();
+   var value = e.target.value;
+     var val7 = this.refs.read.getDOMNode().value;
     FilterActions.readFilter(this.state.read);//***
+ console.log(val7)
   },
-    onAddUrlServer: function(e) {
+  onAddUrlServer: function(e) {
     e.preventDefault();
       console.log('aa')
     var value = this.refs.url.getDOMNode().value.trim();
     this.refs.url.getDOMNode().value = '';
       console.log(value)
       ListArticlesActions.addArticle(value);
-   // this.props.onAddUrlServer(value);
-  },
+    },
   onChangeSearch: function(event) {
       //event.preventDefault();
  var value = event.target.value;
@@ -50,12 +52,12 @@ var HeaderForListArticles = React.createClass({
             <div className = "search">
                <form onSubmit={this.onAddUrlServer}>
                  <input className = "inputUrl" type = "text" placeholder = "http://..." ref='url'/>
-                 <input  type = "submit" value="+ ADD URL"/>
+                 <input  className = "addUrl" type = "submit" value="+ ADD URL"/>
                </form>
             </div>
          </div>
         <div className = "readComp">
-           <a href="#" onClick={this.readFilter}>{content}</a>
+           <a href="#" ref='read' onClick={this.readFilter}>{content}</a>
         </div>
         <div className= "leftHeader">
          <!-- <input className = "inputSearch" type = "search" placeholder = "Search" ref='search' value=                 {this.state.search} onKeyUp={this.onChangeSearch} /> -->
