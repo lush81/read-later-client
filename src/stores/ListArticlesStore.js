@@ -35,9 +35,22 @@ var ListArticlesStore = Reflux.createStore({
     }.bind(this))
   },
 
-   getArticle: function() {///*****
-    var article = this.articles;
-    return article},
+   getArticle: function(id) {///*****
+    console.log("u"+id)
+    console.log(this.articles);
+      var articlesList=[];
+       var articlesListObj = this.articles;
+          //console.log(articlesListObj)
+  
+       for (var key in articlesListObj){
+          articlesListObj[key].id = key;
+          articlesList.push(articlesListObj[key]);
+       }
+  
+      var article = articlesList.filter(function(a){
+         return a.id = id})[0]; 
+     console.log("a"+article)
+        return article},
   
   getArticles: function() {
     var articles = this.articles;

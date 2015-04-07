@@ -14,16 +14,15 @@ var OneArticleActions = require('../actions/ListArticlesActions');
 
 var OneArticleComponent = React.createClass({
   mixins: [
-    Reflux.listenTo(OneArticleStore, 'onArticleUpdate'),
+    Reflux.listenTo(OneArticleStore, 'article'),
   //  Router.State,
     //Router.Navigation
   ],
-
+ 
   getInitialState: function() {
     return {
-    //  article: OneArticleStore.getArticle(this.getParams().id)
-       article: OneArticleStore.getArticle(this.id)
-    }
+     article: OneArticleStore.getArticle(this.context.router.getCurrentParams()['articleId']),
+   }
   },
    contextTypes: {
     router: React.PropTypes.func
@@ -32,17 +31,12 @@ var OneArticleComponent = React.createClass({
 
   render() {
     var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
-
-    var articlesList=[];
-       var articlesListObj = this.state.article;
-          console.log(articlesListObj)
-        console.log(this.context.router.getCurrentParams()['articleId'])
-    
+   
     return (
       <div className ="oneArtComp" >
-        
-          <div className='article_actions'>
+        <div className='article_actions'>
      <HeaderForOneArticle/>
+      <ArticleForOne article = {this.state.article}/>
         </div>
       </div>
     );
