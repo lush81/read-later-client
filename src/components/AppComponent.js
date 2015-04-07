@@ -20,7 +20,7 @@ var AppComponent = React.createClass({
       <div className="app">
        
        <ToolsBarComponent  />
-       <RouteHandler/>
+       <RouteHandler />
       <!--<ContentArticlesComponent articles={this.state.articles} />-->
       <FooterBarComponent  />
       </div>

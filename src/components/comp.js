@@ -12,7 +12,7 @@ return (
          <div className ="article panel panel-danger">
            <div >
                <a className = "titleArticle" href = "#" onClick = {this.a}>
-                  <h1><b>aaa</b></h1>
+                  <h1><b>this.props.article.title</b></h1>
                </a>
             </div>
            <div className = "bodyArticle">bbbb</div>

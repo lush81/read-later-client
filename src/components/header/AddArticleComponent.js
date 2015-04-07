@@ -5,13 +5,14 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var AddArticleComponent = React.createClass({
-   /* onAddUrlServer(e) {
+    onAddUrlServer: function(e) {
     e.preventDefault();
+      console.log('aa')
     var value = this.refs.url.getDOMNode().value.trim();
     this.refs.url.getDOMNode().value = '';
     this.props.onAddUrlServer(value);
   },
-  */
+  
   render: function() {
       return (
         <div className = "addArticleComp">

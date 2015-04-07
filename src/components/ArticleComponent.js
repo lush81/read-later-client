@@ -19,9 +19,9 @@ return (
       <div className = "content">
          <div className ="article panel panel-danger">
            <div >
-                <Link to="oneArticle" params={{articleId: this.props.article.id}}>
+               <Link to="oneArticle" params={{articleId: this.props.article.id}}>
                   <h1><b>{this.props.article.title}</b></h1>
-                </Link>
+            </Link>
             </div>
            <div className = "bodyArticle">{this.shortContent()} ...</div>
     <!--div className = "bodyArticle">{this.props.article.content}</div>-->

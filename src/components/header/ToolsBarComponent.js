@@ -1,6 +1,7 @@
 var React = require("react");
 var _ = require("underscore");
 var AddArticleComponent = require('./AddArticleComponent');
+var ReadUnreadComponent = require('./ReadUnreadComponent');
 var SearchComponent = require('./SearchComponent');
 //var art = require('../Articles');
 var art = require('../Art');
@@ -17,12 +18,10 @@ var ToolsBarComponent = React.createClass({
       <div className = "ToolBarComp">
       <div className = "headerMain">
           <AddArticleComponent onAddUrlServer={this.addArticle}/>
-              <!--{this.props.children}-->
+             <!-- {this.props.children}-->
 
-                <div className = "centerHeader">
-                    <h3><a className = "showAll" href = "#" onClick = "showAll()">Show All</a></h3>
-                </div>
-                 <SearchComponent />
+              <!-- <ReadUnreadComponent/>-->
+                 <!--<SearchComponent />-->
                 
             </div>
             

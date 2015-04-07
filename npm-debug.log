@@ -1,7 +1,7 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/action/.parts/bin/node',
 1 verbose cli   '/home/action/.parts/bin/npm',
-1 verbose cli   'ru',
+1 verbose cli   'run',
 1 verbose cli   'watch' ]
 2 info using npm@1.4.3
 3 info using node@v0.10.26
@@ -22,7 +22,7 @@
 11 error     npm owner ls read-later-client
 11 error There is likely additional logging output above.
 12 error System Linux 3.13.4
-13 error command "/home/action/.parts/bin/node" "/home/action/.parts/bin/npm" "ru" "watch"
+13 error command "/home/action/.parts/bin/node" "/home/action/.parts/bin/npm" "run" "watch"
 14 error cwd /home/action/workspace/read-later-client
 15 error node -v v0.10.26
 16 error npm -v 1.4.3
