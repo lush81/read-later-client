@@ -1,15 +1,86 @@
 var Reflux = require('reflux');
 
-//var FirebaseStore = require('./FirebaseStore');
-//var FirebaseActions = require('../action/FirebaseActions');
+var FirebaseStore = require('./FirebaseStore');
+var FilterStore = require('./FilterStore');//*****
 
-var ListArticlesActions = require('../action/ListArticlesActions');
-
-var Firebase = require('firebase');
-var fb = new Firebase("https://final-project-lush.firebaseio.com/");
+var FirebaseActions = require('../actions/FirebaseActions');
+var ListArticlesActions = require('../actions/ListArticlesActions');
 
 
-var _articles = {};
+var ListArticlesStore = Reflux.createStore({
+  listenables: ListArticlesActions,
+
+  init: function() {
+   // this.listenTo(FilterStore, ListArticlesActions.filterChange);//***
+    this.listenTo(FirebaseStore, ListArticlesActions.receiveArticles);//***
+
+  //  this.filters = FilterStore.getFilters();//***
+    this.articles = {};
+  },
+
+/*  onFilterChange: function(filters) {
+    this.filters = filters;
+    this.trigger(this.getArticles())
+  },
+*/
+  onReceiveArticles: function(articles) {
+    this.articles = articles || {};
+    this.trigger(this.getArticles());
+  },
+
+ /* onAddArticle(url) {
+    fetch('read-later-server.herokuapp.com/scraper', {
+      method: 'post',
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      body: `url=${ url }`
+    })
+  },*/
+
+  getArticles: function() {
+    var articles = this.articles;
+    return articles
+    /*var transformations = [];
+
+    if (this.filters.search) {
+      let search = RegExp(this.filters.search, 'i');
+      transformations.push(filter(([_, a]) => a.title.match(search) || a.url.match(search)));
+    }
+
+    if (this.filters.unreadOnly) {
+      transformations.push(filter(([_, a]) => !a.read));
+    }
+
+    return seq(articles, compose.apply(null, transformations));*/
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//var Firebase = require('firebase');
+//var fb = new Firebase("https://final-project-lush.firebaseio.com/");
+
+
+/*var _articles = {};
 //fb.child("articles").on("value",  function(snapshot) {console.log(snapshot.val());})
 
 var ListArticlesStore = Reflux.createStore({
@@ -32,6 +103,6 @@ var ListArticlesStore = Reflux.createStore({
     this.trigger(this._search);
   }
 });
-
+*/
   
 module.exports = ListArticlesStore;

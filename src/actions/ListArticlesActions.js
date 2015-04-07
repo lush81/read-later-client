@@ -1,9 +1,7 @@
 var Reflux = require('reflux');
 
 module.exports = Reflux.createActions([
-  'receiveListArticles',
-  'search',
-  
+  'receiveArticles',
   'addArticle',
   'filterChange'
 ]);

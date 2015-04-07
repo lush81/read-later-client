@@ -1,17 +1,22 @@
 var React = require("react");
 var Reflux = require('reflux');
+//var debounce = require('lodash').debounce;
 
-var SearchActions = require('../../action/SearchActions');
-var ListArticlesActions = require('../../action/ListArticlesActions');
-var SearchStore = require('../../stores/SearchStore');
-var ListArticlesStore = require('../../stores/ListArticlesStore');
+var FilterActions = require('../../actions/FilterActions');
+var FilterStore = require('../../stores/FilterStore');
 
 var SearchComponent = React.createClass({
-  mixins: [Reflux.connect(ListArticlesStore)],
+  mixins: [Reflux.connect(FilterStore)],
 
- getInitialState() {
-    return {search: '' }
+  getInitialState: function() {
+    return FilterStore.getFilters();//***
   },
+
+  /*componentWillMount() {
+    this.handleSearchDebounced = debounce(() => {
+      FilterActions.search(this.state.search);
+    }, 500);
+  },*/
   
    onChangeSearch: function(event) {
       //event.preventDefault();
@@ -20,7 +25,7 @@ var SearchComponent = React.createClass({
       //SearchActions.search(this.refs.search.getDOMNode().value);
      var val = React.findDOMNode(this.refs.search).value.trim();
      console.log('val')
-     ListArticlesActions.search(value)
+    // FilterActions.search(value)
    },
   
   render: function() {
