@@ -4,7 +4,7 @@ var _ = require("underscore");
 var Router = require('react-router');
 var Link = Router.Link;
 
-var AddArticleComponent = React.createClass({
+var AddUrlComponent = React.createClass({
     onAddUrlServer: function(e) {
     e.preventDefault();
       console.log('aa')
@@ -31,4 +31,4 @@ var AddArticleComponent = React.createClass({
 })
 
 
-module.exports = AddArticleComponent;
+module.exports = AddUrlComponent;

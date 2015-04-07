@@ -6,14 +6,14 @@ var DefaultRoute = Router.DefaultRoute;
 
 var AppComponent = require('./components/AppComponent');
 var ListArticlesComponent = require('./components/ListArticlesComponent');
-//var OneArticleComponent = require('./components/OneArticleComponent');
+var OneArticleComponent = require('./components/OneArticleComponent');
 var comp = require('./components/comp');
 
 
 var routes = (
   <Route name="app" path="/" handler={AppComponent} >
      <Route name="listArticles" path="/articles" handler={ListArticlesComponent} />
-     <Route name="oneArticle" path="/articles/:articleId" handler={comp} />
+     <Route name="oneArticle" path="/articles/:articleId" handler={OneArticleComponent} />
      <DefaultRoute handler={ListArticlesComponent}/>
   </Route>
 );

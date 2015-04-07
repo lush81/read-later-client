@@ -3,13 +3,14 @@ var Reflux = require('reflux');
 
 var FirebaseActions = require('../actions/FirebaseActions');
 
-var articlesRef = new Firebase('https://final-project-lush.firebaseio.com/');
+var f = new Firebase('https://final-project-lush.firebaseio.com/');
+var fb = f.child('articles');
 
 var FirebaseStore = Reflux.createStore({
   listenables: FirebaseActions,
 
   init: function() {
-    articlesRef.child('articles').on('value', FirebaseActions.receiveData);
+    fb.on('value', FirebaseActions.receiveData);
   },
 
   onReceiveData: function(snapshot) {
@@ -17,11 +18,11 @@ var FirebaseStore = Reflux.createStore({
   },
 
  /* onRemoveItem: function(id) {
-    articlesRef.child(id).remove();//**
+    fb.child(id).remove();//**
   },
 
   onUpdateItem: function(id, value) {
-    articlesRef.child(id).update(value);//**
+    fb.child(id).update(value);//**
   }*/
 });
 

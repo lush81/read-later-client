@@ -9,7 +9,7 @@ var ReadComponent = require('./header/ReadComponent');
 var SearchComponent = require('./header/SearchComponent');
 var AddUrlComponent = require('./header/AddUrlComponent');
 
-
+var HeaderForListArticles = require('./header/HeaderForListArticles');
 
 var ListArticlesComponent = React.createClass({
   mixins: [Reflux.connect(ListArticlesStore, 'articles')],
@@ -42,9 +42,10 @@ var ListArticlesComponent = React.createClass({
     return (
     <div className = "listArticlesComp">
       <div className = "head">
-        <AddUrlComponent />
-         <ReadComponent />
-         <SearchComponent />
+      <HeaderForListArticles/>
+        <!--<AddUrlComponent />-->
+         <!--<ReadComponent />-->
+         <!--<SearchComponent />-->
       </div>
         <div className='main-container'>
           <div className='main'>

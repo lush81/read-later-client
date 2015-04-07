@@ -44,6 +44,9 @@ h3:hover{
 .search{
     display: table-cell;
 }
+.readComp{
+   display: table-cell;
+}
 
 .centerHeader{
     margin-left:150px;

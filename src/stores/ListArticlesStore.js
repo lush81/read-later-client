@@ -6,6 +6,7 @@ var FilterStore = require('./FilterStore');//*****
 var FirebaseActions = require('../actions/FirebaseActions');
 var ListArticlesActions = require('../actions/ListArticlesActions');
 
+var request = require('superagent');
 
 var ListArticlesStore = Reflux.createStore({
   listenables: ListArticlesActions,
@@ -28,18 +29,19 @@ var ListArticlesStore = Reflux.createStore({
     this.trigger(this.getArticles());
   },
 
- /* onAddArticle(url) {
-    fetch('read-later-server.herokuapp.com/scraper', {
-      method: 'post',
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      body: `url=${ url }`
-    })
-  },*/
+  onAddArticle: function(url) {
+    request.post('https://read-later-server.herokuapp.com/scraper').type('form').send({url:url}).end(function(err, res){   
+      this.trigger(res['text']);
+    }.bind(this))
+  },
 
+   getArticle: function() {///*****
+    var article = this.articles;
+    return article},
+  
   getArticles: function() {
     var articles = this.articles;
+    console.log("fff"+articles)
     return articles
     /*var transformations = [];
 
