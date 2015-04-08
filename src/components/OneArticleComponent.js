@@ -34,7 +34,7 @@ var OneArticleComponent = React.createClass({
    
     return (
       <div className ="oneArtComp" >
-        <div className='article_actions'>
+        <div className='articleOne'>
      <HeaderForOneArticle/>
       <ArticleForOne article = {this.state.article}/>
         </div>

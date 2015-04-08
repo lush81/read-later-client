@@ -112,10 +112,10 @@ form{
   clear:both;
 }
 .oneArtComp{
-  background: linear-gradient(#e0a8ec, #6b6a95);
+  background: linear-gradient(-45deg, #e0a8ec, #6b6a95);
 }
 .footerComp{
-  background: linear-gradient(#e0a8ec, #6b6a95);
+  background: linear-gradient(-45deg, #e0a8ec, #6b6a95);
   width:100%;
  }
 .titleArticle{

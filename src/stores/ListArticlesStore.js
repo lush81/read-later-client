@@ -12,10 +12,10 @@ var ListArticlesStore = Reflux.createStore({
   listenables: ListArticlesActions,
 
   init: function() {
-   // this.listenTo(FilterStore, ListArticlesActions.filterChange);//***
+   this.listenTo(FilterStore, ListArticlesActions.filterChange);//***
     this.listenTo(FirebaseStore, ListArticlesActions.receiveArticles);//***
 
-  //  this.filters = FilterStore.getFilters();//***
+   this.filters = FilterStore.getFilters();//***
     this.articles = {};
   },
 
@@ -51,9 +51,24 @@ var ListArticlesStore = Reflux.createStore({
    },
   
   getArticles: function() {
-    var articles = this.articles;
+   /* var articles = this.articles;
     console.log("fff"+articles)
-    return articles
+    return articles*/
+    
+     var articlesList=[];
+     var articlesListObj = this.articles;
+      console.log(articlesListObj) 
+      for (var key in articlesListObj){
+        articlesListObj[key].id = key;
+        articlesList.push(articlesListObj[key]);
+       }
+    var obj = this.filters;
+console.log(this.filters)
+     var articles = articlesList.filter(function(a){
+         return a.read != obj.read}); 
+   
+   return articles;
+    console.log(articles)
   } 
    
 });

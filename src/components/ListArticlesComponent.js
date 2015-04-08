@@ -5,10 +5,6 @@ var _ = require("underscore");
 var ListArticlesStore = require("../stores/ListArticlesStore");
 
 var ArticleForList = require("./ArticleForList");
-var ReadComponent = require('./header/ReadComponent');
-var SearchComponent = require('./header/SearchComponent');
-var AddUrlComponent = require('./header/AddUrlComponent');
-
 var HeaderForListArticles = require('./header/HeaderForListArticles');
 
 var ListArticlesComponent = React.createClass({

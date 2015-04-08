@@ -17,11 +17,12 @@ var HeaderForListArticles = React.createClass({
     return FilterStore.getFilters();
   },
   readFilter: function(e) {
-   // e.preventDefault();
-   var value = e.target.value;
-     var val7 = this.refs.read.getDOMNode().value;
+    e.preventDefault();
+  // var value = e.target.value;
+     var val7 = this.refs.read.getDOMNode().text;
+   // var val7 = React.findDOMNode(this.refs.read).value;
     FilterActions.readFilter(this.state.read);//***
- console.log(val7)
+console.log(this.state.read)
   },
   onAddUrlServer: function(e) {
     e.preventDefault();
@@ -43,6 +44,7 @@ var HeaderForListArticles = React.createClass({
   
   render: function() {
      var content = this.state.read ? 'Show All' : 'Show "unread" only';
+  
       return (
         <div className = "headerMain">
           <div className = "addArticleComp">

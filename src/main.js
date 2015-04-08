@@ -7,7 +7,7 @@ var DefaultRoute = Router.DefaultRoute;
 var AppComponent = require('./components/AppComponent');
 var ListArticlesComponent = require('./components/ListArticlesComponent');
 var OneArticleComponent = require('./components/OneArticleComponent');
-var comp = require('./components/comp');
+
 
 
 var routes = (
