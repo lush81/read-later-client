@@ -31,7 +31,7 @@ var OneArticleComponent = React.createClass({
 
   render() {
     var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
-   
+   console.log(this.context.router.getCurrentParams()['articleId'])
     return (
       <div className ="oneArtComp" >
         <div className='articleOne'>

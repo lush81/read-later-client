@@ -13,6 +13,7 @@ var ArticleForList = React.createClass({
   },
   
   render: function() {
+    console.log(this.props.article)
     return (
       <div className = "content">
       <div className = "article">

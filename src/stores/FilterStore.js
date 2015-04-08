@@ -9,9 +9,8 @@ var FilterStore = Reflux.createStore({
 
   init: function() {
   
-    this._filters = {
+    this._filtersRead = {
      read: true,
-     // search: ''
     }
    
   },
@@ -23,12 +22,12 @@ var FilterStore = Reflux.createStore({
 
   onReadFilter: function(read) {
       
-    this._filters.read = !this._filters.read;
-    this.trigger(this._filters);
+    this._filtersRead.read = !this._filtersRead.read;
+    this.trigger(this._filtersRead);
   },
 
   getFilters: function() {
-    return this._filters;
+    return this._filtersRead;
   }
 });
 

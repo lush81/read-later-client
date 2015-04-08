@@ -15,12 +15,12 @@ var ListArticlesStore = Reflux.createStore({
    this.listenTo(FilterStore, ListArticlesActions.filterChange);//***
     this.listenTo(FirebaseStore, ListArticlesActions.receiveArticles);//***
 
-   this.filters = FilterStore.getFilters();//***
+   this.filtersRead = FilterStore.getFilters();//***
     this.articles = {};
   },
 
   onFilterChange: function(filters) {
-    this.filters = filters;
+    this.filtersRead = filters;
     this.trigger(this.getArticles())
   },
 
@@ -30,7 +30,10 @@ var ListArticlesStore = Reflux.createStore({
   },
 
   onAddArticle: function(url) {
-    request.post('https://read-later-server.herokuapp.com/scraper').type('form').send({url:url}).end(function(err, res){   
+    request.post('https://read-later-server.herokuapp.com/scraper')
+      .type('form')
+      .send({url:url})
+      .end(function(err, res){   
       this.trigger(res['text']);
     }.bind(this))
   },
@@ -38,8 +41,8 @@ var ListArticlesStore = Reflux.createStore({
    getArticle: function(id1) {///*****
      var articlesList=[];
      var articlesListObj = this.articles;
-       
-      for (var key in articlesListObj){
+       console.log("ob1  "+articlesList)
+     for (var key in articlesListObj){
         articlesListObj[key].id = key;
         articlesList.push(articlesListObj[key]);
        }
@@ -51,24 +54,22 @@ var ListArticlesStore = Reflux.createStore({
    },
   
   getArticles: function() {
-   /* var articles = this.articles;
-    console.log("fff"+articles)
-    return articles*/
+   
+     var articlesList1=[];
     
-     var articlesList=[];
-     var articlesListObj = this.articles;
-      console.log(articlesListObj) 
-      for (var key in articlesListObj){
-        articlesListObj[key].id = key;
-        articlesList.push(articlesListObj[key]);
+    var obj = this.filtersRead;
+    var art = this.articles;
+    console.log(JSON.stringify(art))
+    for (var key in art){
+      console.log("k "+key)
+        art[key].id = key;
+        articlesList1.push(art[key]);
        }
-    var obj = this.filters;
-console.log(this.filters)
-     var articles = articlesList.filter(function(a){
+    var artic = articlesList1.filter(function(a){
          return a.read != obj.read}); 
    
-   return articles;
-    console.log(articles)
+   return artic;
+    console.log(artic)
   } 
    
 });

@@ -19,13 +19,11 @@ var ListArticlesComponent = React.createClass({
   render: function() {
       var articlesList=[];
        var articlesListObj = this.state.articles;
-          console.log(articlesListObj)
-  
+          
        for (var key in articlesListObj){
-          articlesListObj[key].id = key;
-          articlesList.push(articlesListObj[key]);
+           articlesList.push(articlesListObj[key]);
        }
-  console.log("lc   " +  articlesList)
+
       var articlesList1 = articlesList.map(function(article, id){
          return( 
            <ArticleForList
