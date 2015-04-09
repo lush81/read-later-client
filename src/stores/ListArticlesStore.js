@@ -13,7 +13,9 @@ var ListArticlesStore = Reflux.createStore({
   listenables: ListArticlesActions,
 
   init: function() {
-   this.listenTo(FirebaseStore, this.onReceiveArticles);   
+   this.listenTo(FirebaseStore, this.onReceiveArticles); 
+    this.listenTo(FilterStore, this.onShowAll); 
+    
    this.filtersRead = FilterStore.getFilters();
    
      this.articles = {};
@@ -48,9 +50,7 @@ var ListArticlesStore = Reflux.createStore({
     }.bind(this))
   },
 
-  onShowAll: function(readShow) { // получили состояние readShow из FilterStore
-   console.log("55" +readShow)
-    this.filtersRead = readShow;
+  onShowAll: function() { // вызывается по изменению FilterStore
     this.trigger(this.getListArticles())
   },
 
