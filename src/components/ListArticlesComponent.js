@@ -1,6 +1,5 @@
-var React = require("react");
+ var React = require("react");
 var Reflux = require('reflux');
-var _ = require("underscore");
 
 var ListArticlesStore = require("../stores/ListArticlesStore");
 
@@ -9,45 +8,44 @@ var HeaderForListArticles = require('./header/HeaderForListArticles');
 
 var ListArticlesComponent = React.createClass({
   mixins: [Reflux.connect(ListArticlesStore, 'articles')],
-  
-    getInitialState: function() {
+
+  getInitialState: function() {
     return {
-      articles: ListArticlesStore.getArticles()//******
+      articles: ListArticlesStore.getListArticles()// получаем загруженные статьи
     };
   },
-     
+
   render: function() {
-      var articlesList=[];
-       var articlesListObj = this.state.articles;
-          
-       for (var key in articlesListObj){
-           articlesList.push(articlesListObj[key]);
+      var artListArray=[];
+      var artListObj = this.state.articles;
+
+      for (var key in artListObj){
+         //articlesListObj[key].id = key;///***
+           artListArray.push(artListObj[key]);
        }
 
-      var articlesList1 = articlesList.map(function(article, id){
-         return( 
+      var articlesList = artListArray.map(function(article, id){
+         return(
            <ArticleForList
               article={article}
               key={id}
               id ={id}/>
          )
-      }
-     )
-   
-    
+      })
+
     return (
-    <div className = "listArticlesComp">
+    <div className = "headComp">
       <div className = "head">
          <HeaderForListArticles/>
        </div>
-        <div className='main-container'>
-          <div className='main'>
-           {articlesList1}
+        <div className='contentComp'>
+          <div className='content'>
+           {articlesList}
           </div>
       </div>
     </div>
     )
-   }                                                    
+   }
 })
 
 module.exports=ListArticlesComponent;

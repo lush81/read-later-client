@@ -8,27 +8,23 @@ var FilterStore = Reflux.createStore({
   listenables: FilterActions,
 
   init: function() {
-  
-    this._filtersRead = {
+     this.filtersReadShow = {
      read: true,
     }
-   
   },
-  
-  /*onSearch: function(text) {
-    this._filters.search = text;
-    this.trigger(this._filters);
-  },*/
-
-  onReadFilter: function(read) {
-      
-    this._filtersRead.read = !this._filtersRead.read;
-    this.trigger(this._filtersRead);
+ 
+  onShowAllFilter: function(readShow) {// получили значение readShow (true/false)  из HeaderForListArticles
+     console.log("r " +!readShow) 
+    this.filtersReadShow.read = !readShow;
+     console.log("r " +this.filtersReadShow.read)
+    this.trigger(this.filtersReadShow);
   },
-
-  getFilters: function() {
-    return this._filtersRead;
+    
+     getFilters: function() {
+   return this.filtersReadShow;
+    
   }
-});
+
+  });
 
 module.exports = FilterStore;

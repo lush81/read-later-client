@@ -1,10 +1,8 @@
 var React = require("react");
 var Reflux = require('reflux');
-var _ = require("underscore");
 
 var Router = require('react-router');
 var Link = Router.Link;
-
 
 var FilterStore = require('../../stores/FilterStore');
 var FilterActions = require('../../actions/FilterActions');
@@ -14,37 +12,36 @@ var HeaderForListArticles = React.createClass({
    mixins: [Reflux.connect(FilterStore)],
 
   getInitialState: function() {
-    return FilterStore.getFilters();
+     return {
+        readShow : FilterStore.getFilters() // true/false
+     };
   },
-  readFilter: function(e) {
-    e.preventDefault();
-  // var value = e.target.value;
-     var val7 = this.refs.read.getDOMNode().text;
-   // var val7 = React.findDOMNode(this.refs.read).value;
-    FilterActions.readFilter(this.state.read);//***
-console.log(this.state.read)
-  },
+
   onAddUrlServer: function(e) {
     e.preventDefault();
-      console.log('aa')
-    var value = this.refs.url.getDOMNode().value.trim();
-    this.refs.url.getDOMNode().value = '';
-      console.log(value)
-      ListArticlesActions.addArticle(value);
+    var value =React.findDOMNode(this.refs.url).value.trim();
+    React.findDOMNode(this.refs.url).value= '';
+    ListArticlesActions.addArticle(value); //  передаем значение url в ListArticlesStore
     },
+
+  readShowFilter: function(e) { //обрабатываем клик ShowAll
+    e.preventDefault();
+    console.log("22222222222")
+   // ListArticlesActions.showAll(this.state.readShow);// передаем состояние readShow в  ListArticlesStore
+    FilterActions.showAllFilter(this.state.readShow.read);// передаем состояние readShow в  ListArticlesStore
+  },
+
   onChangeSearch: function(event) {
-      //event.preventDefault();
- var value = event.target.value;
-    //this.setState({ search: this.refs.search.getDOMNode().value });
-      //SearchActions.search(this.refs.search.getDOMNode().value);
-     var val = React.findDOMNode(this.refs.search).value.trim();
+    /*  //event.preventDefault();
+      var value = event.target.value;
+      var val = React.findDOMNode(this.refs.search).value.trim();
      console.log('val')
-    // FilterActions.search(value)
-   },
-  
+    // FilterActions.search(value)*/
+  },
+
   render: function() {
-     var content = this.state.read ? 'Show All' : 'Show "unread" only';
-  
+     var readState = this.state.readShow.read ? 'Show All' : 'Show "unread" only';
+
       return (
         <div className = "headerMain">
           <div className = "addArticleComp">
@@ -59,15 +56,13 @@ console.log(this.state.read)
             </div>
          </div>
         <div className = "readComp">
-           <a href="#" ref='read' onClick={this.readFilter}>{content}</a>
+           <a href="#" ref='read' onClick={this.readShowFilter}>{readState}</a>
         </div>
         <div className= "leftHeader">
-         <!-- <input className = "inputSearch" type = "search" placeholder = "Search" ref='search' value=                 {this.state.search} onKeyUp={this.onChangeSearch} /> -->
-           <input className = "inputSearch" type = "text" placeholder = "Search" ref='search'  onChange ={this.onChangeSearch} />
+           <input className="inputSearch" type="text" placeholder="Search" ref='search'  onChange={this.onChangeSearch} />
        </div>
    </div>
-            )
-  }
+  )}
 })
 
 

@@ -5,17 +5,27 @@ var _ = require("underscore");
 var Router = require('react-router');
 var Link = Router.Link;
 
-
+var ListArticlesStore = require('../../stores/ListArticlesStore');
 var FilterStore = require('../../stores/FilterStore');
-var FilterActions = require('../../actions/FilterActions');
-var OneArticleActions = require('../../actions/ListArticlesActions');
-var HeaderForOneArticle = React.createClass({
-   mixins: [Reflux.connect(FilterStore)],
 
+var FirebaseActions = require('../../actions/FirebaseActions');
+var FilterActions = require('../../actions/FilterActions');
+var ListArticlesActions = require('../../actions/ListArticlesActions');
+
+var HeaderForOneArticle = React.createClass({
+   mixins: [Reflux.connect(ListArticlesStore)],
+  // mixins: [Reflux.connect(ListArticlesStore, 'onChangeRead')],
   getInitialState: function() {
-    return FilterStore.getFilters();
+    return {
+      //readState:FilterStore.getMakeReadFilters()
+      read: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']).read
+    };
   },
-  
+ /*  onChangeRead(article) {
+    this.setState({
+      read: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']).read
+    });
+  },*/
   onAddUrlServer: function(e) {
     e.preventDefault();
       console.log('aa')
@@ -26,17 +36,26 @@ var HeaderForOneArticle = React.createClass({
  removeArticle: function(e) {
     e.preventDefault();
    // OneArticleActions.removeArticle(this.getParams().id, this);
-    OneArticleActions.removeArticle();
+    ListArticlesActions.removeArticle(this.context.router.getCurrentParams()['articleId']);
+   //FirebaseActions.removeArticle(this.context.router.getCurrentParams()['articleId']);
   },
 
-  changeReadState: function(e) {
+  makeRead: function(e) {
     e.preventDefault();
    // OneArticleActions.changeReadState(this.getParams().id);
-     OneArticleActions.changeReadState();
+    console.log("1111  " + (this.context.router.getCurrentParams()['articleId']));
+  ListArticlesActions.makeRead(this.context.router.getCurrentParams()['articleId']);
+      // FirebaseActions.makeReadFirebase(this.context.router.getCurrentParams()['articleId'], this.readState);
+  },
+   contextTypes: {
+    router: React.PropTypes.func
   },
   
   render: function() {
-  var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
+  //  var atricleArr =this.state.article;
+    //var art = atricleArr.read
+    console.log("ww"+ this.state.read)
+  var readState = this.state.read  ? 'Mark as unread' : 'Mark as read';
       return (
         <div className = "headerMain">
          <div className = "addArticleComp">
@@ -51,7 +70,8 @@ var HeaderForOneArticle = React.createClass({
            </div>
         </div>
            <a className='remove' href='#' onClick={this.removeArticle}>Remove</a>
-           <a className='readComp' href='#' onClick={this.changeReadState}>{readState}</a>
+           <a className='readComp' href='#' onClick={this.makeRead}>{readState}</a>
+          
 </div>
             )
   }

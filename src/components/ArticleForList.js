@@ -2,27 +2,43 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 
-//var LinkToOriginal = require('../LinkToOriginal');//***
-
-
 var ArticleForList = React.createClass({
-   
+
  shortContent: function(){
-   var shortBody = this.props.article.content.substr(0,300)+"...";
+    var context = this.props.article.content;
+    var replaceSymbol = /<[^>]+>/g;
+    context = context.replace(replaceSymbol, "");
+    var shortBody = context.substr(0,300)+"...";
+
     return shortBody;
   },
-  
+
+  shortUrl:function(){
+    var urlFull = this.props.article.url;
+
+    var regExpLong = new RegExp("\/*[A-Za-z0-9]+.[A-Za-z0-9.]+\/");
+    var domain;
+        if (regExpLong.test(urlFull.trim())) {
+            var domainObj = regExpLong.exec(urlFull.trim());
+            domain = domainObj[0];
+        } else {
+          domain =  urlFull;
+        }
+    var replaceSymbol = /\//g;
+    domain = domain.replace(replaceSymbol, "");
+
+    return domain;
+  },
+
   render: function() {
-    console.log(this.props.article)
-    return (
+   return (
       <div className = "content">
       <div className = "article">
            <Link to="oneArticle" params={{articleId: this.props.article.id}}>
                 <h1><b>{this.props.article.title}</b></h1>
            </Link>
-           <div className = "bodyArticle">{this.shortContent()}</div>
-    <!--div className = "bodyArticle">{this.props.article.content}</div>-->
-            <div className = "urlArticle"><a href="#" >{this.props.article.url}</a></div>
+            <div className = "bodyArticle">{this.shortContent()}</div>
+            <div className = "urlArticle"><a href={this.props.article.url} >{this.shortUrl()}</a></div>
        </div>
       </div>
    )

@@ -10,20 +10,21 @@ var FirebaseStore = Reflux.createStore({
   listenables: FirebaseActions,
 
   init: function() {
-    fb.on('value', FirebaseActions.receiveData);
+    fb.on('value', FirebaseActions.receiveArticles);
   },
 
-  onReceiveData: function(snapshot) {
+  onReceiveArticles: function(snapshot) {
     this.trigger(snapshot.val());
   },
 
- /* onRemoveItem: function(id) {
-    fb.child(id).remove();//**
+  onRemoveArticle: function(id) {
+    console.log(id)
+    fb.child(id+"/").remove();
   },
 
-  onUpdateItem: function(id, value) {
-    fb.child(id).update(value);//**
-  }*/
+  onMakeReadFirebase: function(id, value) {
+    fb.child(id+"/").update(value);
+  }
 });
 
 module.exports = FirebaseStore;

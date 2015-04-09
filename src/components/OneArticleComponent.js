@@ -6,22 +6,16 @@ var HeaderForOneArticle = require('./header/HeaderForOneArticle');
 
 var ArticleForOne = require('./ArticleForOne');
 
-//var OneArticleStore = require('../stores/OneArticleStore');
-//var OneArticleActions = require('../stores/OneArticleActions');
-
-var OneArticleStore = require('../stores/ListArticlesStore');
-var OneArticleActions = require('../actions/ListArticlesActions');
+var ListArticlesStore = require('../stores/ListArticlesStore');
 
 var OneArticleComponent = React.createClass({
   mixins: [
-    Reflux.listenTo(OneArticleStore, 'article'),
-  //  Router.State,
-    //Router.Navigation
+    Reflux.listenTo(ListArticlesStore, 'article'),
   ],
  
   getInitialState: function() {
     return {
-     article: OneArticleStore.getArticle(this.context.router.getCurrentParams()['articleId']),
+     article: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']),
    }
   },
    contextTypes: {

@@ -12,7 +12,6 @@ var OneArticleComponent = require('./components/OneArticleComponent');
 
 var routes = (
   <Route name="app" path="/" handler={AppComponent} >
-     <Route name="listArticles" path="/articles" handler={ListArticlesComponent} />
      <Route name="oneArticle" path="/articles/:articleId" handler={OneArticleComponent} />
      <DefaultRoute handler={ListArticlesComponent}/>
   </Route>
