@@ -6,33 +6,23 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var ListArticlesStore = require('../../stores/ListArticlesStore');
-var FilterStore = require('../../stores/FilterStore');
-
 var FirebaseActions = require('../../actions/FirebaseActions');
-var FilterActions = require('../../actions/FilterActions');
-var ListArticlesActions = require('../../actions/ListArticlesActions');
+
 
 var HeaderForOneArticle = React.createClass({
    mixins: [Reflux.connect(ListArticlesStore)],
-  // mixins: [Reflux.connect(ListArticlesStore, 'onChangeRead')],
+  
   getInitialState: function() {
     return {
       article: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId'])
     };
   },
  
-  /*onAddUrlServer: function(e) {
-     e.preventDefault();
-     var value =React.findDOMNode(this.refs.url).value.trim();
-     React.findDOMNode(this.refs.url).value= '';
-     ListArticlesActions.addArticle(value); //  передаем значение url в ListArticlesStore
-  },*/
-  
   onAddUrlServer: function(e) {
      e.preventDefault();
      var value =React.findDOMNode(this.refs.url).value.trim();
      React.findDOMNode(this.refs.url).value= '';
-     FirebaseActions.addArticle(value); //  передаем значение url в ListArticlesStore
+     FirebaseActions.addArticle(value); 
   },
   
   

@@ -6,37 +6,37 @@ var Link = Router.Link;
 
 var FilterStore = require('../../stores/FilterStore');
 var FilterActions = require('../../actions/FilterActions');
-var ListArticlesActions = require('../../actions/ListArticlesActions');
+var FirebaseActions = require('../../actions/FirebaseActions');
+//var ListArticlesActions = require('../../actions/ListArticlesActions');
 
 var HeaderForListArticles = React.createClass({
    mixins: [Reflux.connect(FilterStore)],
 
   getInitialState: function() {
      return {
-        readShow : FilterStore.getFilters() // true/false
+        readShow : FilterStore.getFilters()
      };
   },
 
   onAddUrlServer: function(e) {
+     e.preventDefault();
+     var value =React.findDOMNode(this.refs.url).value.trim();
+     React.findDOMNode(this.refs.url).value= '';
+     FirebaseActions.addArticle(value); 
+  },
+  
+  readShowFilter: function(e) { 
     e.preventDefault();
-    var value =React.findDOMNode(this.refs.url).value.trim();
-    React.findDOMNode(this.refs.url).value= '';
-    ListArticlesActions.addArticle(value); //  передаем значение url в ListArticlesStore
-    },
-
-  readShowFilter: function(e) { //обрабатываем клик ShowAll
-    e.preventDefault();
-    console.log("22222222222")
-   // ListArticlesActions.showAll(this.state.readShow);// передаем состояние readShow в  ListArticlesStore
-    FilterActions.showAllFilter(this.state.readShow.read);// передаем состояние readShow в  ListArticlesStore
+    this.state.readShow.read = ! this.state.readShow.read;
+    FilterActions.showAllFilter(this.state.readShow.read);
   },
 
   onChangeSearch: function(event) {
-    /*  //event.preventDefault();
-      var value = event.target.value;
-      var val = React.findDOMNode(this.refs.search).value.trim();
-     console.log('val')
-    // FilterActions.search(value)*/
+  /*  event.preventDefault();
+     // var value = event.target.value;
+      var value = React.findDOMNode(this.refs.search).value;
+    console.log("v "+value)
+       FilterActions.search(value);*/
   },
 
   render: function() {

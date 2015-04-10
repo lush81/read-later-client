@@ -1,5 +1,6 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
+var request = require('superagent');
 
 var FirebaseActions = require('../actions/FirebaseActions');
 
@@ -13,7 +14,7 @@ var FirebaseStore = Reflux.createStore({
     fb.on('value', FirebaseActions.receiveArticles);
   },
 
-  onReceiveArticles: function(snapshot) {
+  receiveArticles: function(snapshot) {
     this.trigger(snapshot.val());
   },
 
@@ -26,7 +27,7 @@ var FirebaseStore = Reflux.createStore({
     fb.child(id+"/").update(value);
   },
   
-  onAddArticle: function(url) { // получили url из HeaderForListArticles
+  onAddArticle: function(url) { 
     request.post('https://read-later-server.herokuapp.com/scraper')
       .type('form')
       .send({url:url})

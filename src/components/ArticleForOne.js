@@ -3,12 +3,11 @@ var React = require('react');
 var ArticleForOne = React.createClass({
 
   articleContent:function() {
-      return { __html: this.props.article.content }
+      return { __html: this.props.article.content ? this.props.article.content: ""}
   },
 
   shortUrl:function(){
     var urlFull = this.props.article.url;
-
     var regExpLong = new RegExp("\/*[A-Za-z0-9]+.[A-Za-z0-9.]+\/");
     var domain;
         if (regExpLong.test(urlFull.trim())) {
@@ -25,17 +24,17 @@ var ArticleForOne = React.createClass({
 
    render() {
     return (
-      <div className ="artForOneComp">
+     <div className ="artForOneComp">
         <div>
           <h1><b>{this.props.article.title}</b></h1>
-      </div>
-      <div>
+        </div>
+       <div>
           <a className = "urlOne" href = {this.props.article.url}> {this.shortUrl()} </a>
-        </div>
-        <div >
+       </div>
+       <div >
             <div dangerouslySetInnerHTML= {this.articleContent()} />
-        </div>
-      </div>
+       </div>
+     </div>
     );
   }
 });

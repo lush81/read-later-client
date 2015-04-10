@@ -22,8 +22,7 @@ var OneArticleComponent = React.createClass({
     router: React.PropTypes.func
   },
   
-
-  render() {
+   render() {
     return (
       <div className ="oneArtComp" >
          <div className = "head"> 

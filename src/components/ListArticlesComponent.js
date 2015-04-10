@@ -11,7 +11,7 @@ var ListArticlesComponent = React.createClass({
 
   getInitialState: function() {
     return {
-      articles: ListArticlesStore.getListArticles()// получаем загруженные статьи
+      articles: ListArticlesStore.getListArticles()
     };
   },
 
@@ -38,12 +38,10 @@ var ListArticlesComponent = React.createClass({
       <div className = "head">
          <HeaderForListArticles/>
        </div>
-        <!--<div className='contentComp'>-->
-          <div className='content'>
+         <div className='content'>
            {articlesList}
-          </div>
-     <!-- </div>-->
-    </div>
+         </div>
+      </div>
     )
    }
 })
