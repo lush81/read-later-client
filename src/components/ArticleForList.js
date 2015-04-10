@@ -32,15 +32,15 @@ var ArticleForList = React.createClass({
 
   render: function() {
    return (
-      <div className = "content">
+      <!--<div className = "content">-->
       <div className = "article">
            <Link to="oneArticle" params={{articleId: this.props.article.id}}>
-                <h1><b>{this.props.article.title}</b></h1>
+                <h2><b>{this.props.article.title}</b></h2>
            </Link>
             <div className = "bodyArticle">{this.shortContent()}</div>
             <div className = "urlArticle"><a href={this.props.article.url} >{this.shortUrl()}</a></div>
        </div>
-      </div>
+    <!-- </div>-->
    )
   }
 })

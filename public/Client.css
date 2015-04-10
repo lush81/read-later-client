@@ -8,7 +8,10 @@
   border-bottom: 1px solid #ddd;
   box-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
-
+.app{
+  background: linear-gradient(-60deg, #926FA3, #A69550);
+  height:100%;
+}
 /*#header {
  display: table-cell;
 }
@@ -16,11 +19,12 @@
 
 a {
     text-decoration: none; /* Убирает подчеркивание для ссылок */
-    color: blue;
+   color:rgb(33, 89, 174);
 } 
 a: visited { 
     /*text-decoration: underline; /* Добавляем подчеркивание при наведении курсора на ссылку */
-    color: blue; /* Ссылка голубого цвета */
+   color:rgb(33, 89, 174);
+  font-weight: bold;
 }
 b{
   color: black;
@@ -31,7 +35,8 @@ h3{
     padding-right:8px;
     padding-left:8px;
     padding-bottom:8px;
-  display: inline-block;
+    display: inline-block;
+   
 }   
 
 .readNow{
@@ -39,6 +44,21 @@ h3{
     width:100px;
     display: table-cell;
   padding-left:65px;
+   font-style: oblique ;
+    font-family:'Comic Sans MS';
+  color:rgb(255, 0, 136);
+  font-weight: bold;
+}
+span{
+    font-style: oblique ;
+    font-family:'Comic Sans MS';
+  color: rgb(108, 30, 54);
+  font-weight: bold;
+padding-right: 20px;
+}
+a.active{
+  color: rgb(140, 107, 122);
+  font-size: larger;
 }
 .addUrl{
   border:none;
@@ -46,10 +66,10 @@ h3{
   padding-right: 6px;
    padding-bottom:6px;
   border-radius:5px;
-   background-color: rgb(209, 195, 211);;
-}
-h3:hover{
-    background-color: #A2E2E7;
+  background-color: #A9B379;
+  color: rgb(126, 108, 53);
+  font-weight: bold;
+  font-family: monospace;
 }
 
 .search{
@@ -72,12 +92,26 @@ h3:hover{
     padding-left: 190px;
     padding-right: 50px;
 }
-
+.showAll, .remove, .readComp{
+  color:rgb(126, 108, 53);
+  font-family: sans-serif;
+}
+.readComp:hover{
+  color:rgb(194, 152, 25);
+}
+.showAll:hover{
+  background-color: #A9B379; 
+   padding-top: 6px;
+  padding-right: 6px;
+   padding-bottom:6px;
+  padding-left: 6px;
+  border-radius: 5px;
+}
 .inputSearch, .inputUrl{
   line-height: normal;
     background: 0 0;
   border: none;
-  border-bottom: 1px solid #b9dde7;
+  border-bottom: 1px solid rgb(126, 108, 53);
    color: inherit;
   font: inherit;
   margin: 0;
@@ -99,10 +133,12 @@ h3:hover{
   
     font: 16px/24px "Florence",Helvetica,Arial,sans-serif;
   color: #5d5d5d;
+   height:450px;
 }
 .artForOneComp{
   margin-left:175px;
    width:795px;
+    height: 100%;
 }
 form{
   padding-top:25px;
@@ -110,14 +146,41 @@ form{
 .footer{
   display:block;
   clear:both;
+    margin-left: 30px;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 35px;
 }
 .oneArtComp{
   background: linear-gradient(-45deg, #e0a8ec, #6b6a95);
+ 
 }
 .footerComp{
   background: linear-gradient(-45deg, #e0a8ec, #6b6a95);
   width:100%;
+  
  }
+.readLater{
+  text-decoration: none;
+  color: rgb(98, 84, 21);
+  font-style: italic;
+  font-variant: inherit;
+  font-weight: 800;
+  font-size: large;
+}
+.readLater:hover{
+   padding-top: 6px;
+  padding-right: 6px;
+   padding-bottom:6px;
+  border-radius:5px;
+  background-color: #8B605B;}
+
+a.urlOne span{
+  color:blue;
+  font-family: inherit;
+}
+
+
 .titleArticle{
 color:black;
 }
@@ -133,6 +196,12 @@ color:black;
  /* width: 47.5%;*/
   vertical-align: top;
 }
+.mess{
+    color: rgb(90, 40, 15);
+  font-family: inherit;
+  font-style: italic;
+  width: 95%;
+}
 .flash{
     width: 100%;
     position: fixed;
@@ -144,3 +213,8 @@ color:black;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     background: green;
 }
+a.active{
+  color:rgb(140, 107, 122);
+}
+a.active:hover{
+  color: rgb(182, 65, 118);

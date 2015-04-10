@@ -17,45 +17,44 @@ var HeaderForOneArticle = React.createClass({
   // mixins: [Reflux.connect(ListArticlesStore, 'onChangeRead')],
   getInitialState: function() {
     return {
-      //readState:FilterStore.getMakeReadFilters()
-      read: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']).read
+      article: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId'])
     };
   },
- /*  onChangeRead(article) {
-    this.setState({
-      read: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']).read
-    });
+ 
+  /*onAddUrlServer: function(e) {
+     e.preventDefault();
+     var value =React.findDOMNode(this.refs.url).value.trim();
+     React.findDOMNode(this.refs.url).value= '';
+     ListArticlesActions.addArticle(value); //  передаем значение url в ListArticlesStore
   },*/
+  
   onAddUrlServer: function(e) {
-    e.preventDefault();
-      console.log('aa')
-    var value = this.refs.url.getDOMNode().value.trim();
-    this.refs.url.getDOMNode().value = '';
-    this.props.onAddUrlServer(value);
+     e.preventDefault();
+     var value =React.findDOMNode(this.refs.url).value.trim();
+     React.findDOMNode(this.refs.url).value= '';
+     FirebaseActions.addArticle(value); //  передаем значение url в ListArticlesStore
   },
+  
+  
  removeArticle: function(e) {
-    e.preventDefault();
-   // OneArticleActions.removeArticle(this.getParams().id, this);
-    ListArticlesActions.removeArticle(this.context.router.getCurrentParams()['articleId']);
-   //FirebaseActions.removeArticle(this.context.router.getCurrentParams()['articleId']);
-  },
+    var id = this.context.router.getCurrentParams()['articleId'];
+    FirebaseActions.removeArticle(id, this.state.article);
+ },
 
-  makeRead: function(e) {
+  onMakeRead: function(e) {
     e.preventDefault();
-   // OneArticleActions.changeReadState(this.getParams().id);
-    console.log("1111  " + (this.context.router.getCurrentParams()['articleId']));
-  ListArticlesActions.makeRead(this.context.router.getCurrentParams()['articleId']);
-      // FirebaseActions.makeReadFirebase(this.context.router.getCurrentParams()['articleId'], this.readState);
+    this.state.article.read = !this.state.article.read;
+    var id = this.context.router.getCurrentParams()['articleId'];
+    FirebaseActions.makeRead(id, this.state.article);
+   
   },
    contextTypes: {
     router: React.PropTypes.func
   },
   
   render: function() {
-  //  var atricleArr =this.state.article;
-    //var art = atricleArr.read
-    console.log("ww"+ this.state.read)
-  var readState = this.state.read  ? 'Mark as unread' : 'Mark as read';
+   
+  var readState = this.state.article.read  ? 'Mark as unread' : 'Mark as read';
       return (
         <div className = "headerMain">
          <div className = "addArticleComp">
@@ -69,11 +68,10 @@ var HeaderForOneArticle = React.createClass({
               </form>
            </div>
         </div>
-           <a className='remove' href='#' onClick={this.removeArticle}>Remove</a>
-           <a className='readComp' href='#' onClick={this.makeRead}>{readState}</a>
-          
-</div>
-            )
+           <div className='remove' onClick={this.removeArticle}> <Link to="app" > Remove</Link></div>
+           <a className='readComp' href='#' onClick={this.onMakeRead}>{readState}</a>
+         </div>
+     )
   }
 })
 

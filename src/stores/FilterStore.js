@@ -14,8 +14,7 @@ var FilterStore = Reflux.createStore({
   },
  
   onShowAllFilter: function(readShow) {// получили значение readShow (true/false)  из HeaderForListArticles
-     console.log("r " +!readShow) 
-    this.filtersReadShow.read = !readShow;
+     this.filtersReadShow.read = !readShow;
      console.log("r " +this.filtersReadShow.read)
     this.trigger(this.filtersReadShow);
   },

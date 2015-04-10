@@ -56,7 +56,7 @@ var HeaderForListArticles = React.createClass({
             </div>
          </div>
         <div className = "readComp">
-           <a href="#" ref='read' onClick={this.readShowFilter}>{readState}</a>
+           <a className = "showAll" href="#" ref='read' onClick={this.readShowFilter}>{readState}</a>
         </div>
         <div className= "leftHeader">
            <input className="inputSearch" type="text" placeholder="Search" ref='search'  onChange={this.onChangeSearch} />

@@ -27,10 +27,14 @@ var ArticleForOne = React.createClass({
     return (
       <div className ="artForOneComp">
         <div>
-          <h1>{this.props.article.title}</h1>
-          <a href = {this.props.article.url}> {this.shortUrl()} </a>
+          <h1><b>{this.props.article.title}</b></h1>
+      </div>
+      <div>
+          <a className = "urlOne" href = {this.props.article.url}> {this.shortUrl()} </a>
         </div>
-        <div dangerouslySetInnerHTML= {this.articleContent()} />
+        <div >
+            <div dangerouslySetInnerHTML= {this.articleContent()} />
+        </div>
       </div>
     );
   }

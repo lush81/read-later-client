@@ -22,9 +22,20 @@ var FirebaseStore = Reflux.createStore({
     fb.child(id+"/").remove();
   },
 
-  onMakeReadFirebase: function(id, value) {
+  onMakeRead: function(id, value) {
     fb.child(id+"/").update(value);
-  }
+  },
+  
+  onAddArticle: function(url) { // получили url из HeaderForListArticles
+    request.post('https://read-later-server.herokuapp.com/scraper')
+      .type('form')
+      .send({url:url})
+      .end(function(err, res){
+      this.trigger(res['text']);
+    }.bind(this))
+  },
+  
+  
 });
 
 module.exports = FirebaseStore;

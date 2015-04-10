@@ -38,11 +38,11 @@ var ListArticlesComponent = React.createClass({
       <div className = "head">
          <HeaderForListArticles/>
        </div>
-        <div className='contentComp'>
+        <!--<div className='contentComp'>-->
           <div className='content'>
            {articlesList}
           </div>
-      </div>
+     <!-- </div>-->
     </div>
     )
    }
