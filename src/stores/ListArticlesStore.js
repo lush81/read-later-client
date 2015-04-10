@@ -11,10 +11,10 @@ var ListArticlesStore = Reflux.createStore({
   init: function() {
     this.listenTo(FirebaseStore, this.receiveArticles); 
     this.listenTo(FilterStore, this.showAll); 
-   // this.listenTo(FilterStore, this.search); 
+    this.listenTo(FilterStore, this.search); //**
     
     this.filtersRead = FilterStore.getFilters();
-   // this.searchText = FilterStore.getSearch();
+    this.searchText = FilterStore.getSearch();//**
     this.articles = {};
     
   },
@@ -31,11 +31,11 @@ var ListArticlesStore = Reflux.createStore({
     this.trigger(this.getListArticles())
   },
   
- /* search: function(searchText) { 
-     console.log('st '+searchText)
+  search: function(searchText) { //*****
+   //  console.log('st '+searchText)
     this.searchText.text= searchText;
     this.trigger(this.getListArticles())
-  },*/
+  },
     
   parseListArticles:function(){
     var articlesArray = [];
@@ -57,32 +57,24 @@ var ListArticlesStore = Reflux.createStore({
         return a.read !== objRead.read}); 
      }
     
-   /* var searchArr=[];
+    var searchArr=[];            ///*******
     var objSearch = this.searchText;
-    var text = objSearch.text;
-    console.log("t "+text)
-    
-     console.log("1 " +!objSearch.text);
-    if(objSearch.text===''){
-     console.log(articlesArr)
-   // return articlesArr;
-     articlesArr=articlesArr;
-      
-  }else{
-   for(var j=0; j<articlesArr.lenght; j++){
-     console.log("77  "+articlesArr[j])
-        if (articlesArr[j].title.indexof(text)!==-1){
-          searchArr.push(articlesArr[j]);
+    var text = objSearch.text.toUpperCase();
+   
+     if(objSearch.text===''){
+        articlesArr=articlesArr;
+     }else{
+        for(var j=0; j<articlesArr.length; j++){
+           if (articlesArr[j].title.toUpperCase().indexOf(text)!==-1){
+             searchArr.push(articlesArr[j]);
+          }
         }
-      }
-   // return searchArr;
-    articlesArr=searchArr;
-    console.log(searchArr)
- }*/
-   return  articlesArr
+      return searchArr;
+  
+     }                                 //****
+   return  articlesArr;
     
   },
-  
   
   getArticle: function(id1) {
     var articlesArr= this.parseListArticles();

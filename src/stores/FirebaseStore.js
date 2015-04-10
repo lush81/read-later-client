@@ -19,7 +19,7 @@ var FirebaseStore = Reflux.createStore({
   },
 
   onRemoveArticle: function(id) {
-    console.log(id)
+   // console.log(id)
     fb.child(id+"/").remove();
   },
 

@@ -31,12 +31,12 @@ var HeaderForListArticles = React.createClass({
     FilterActions.showAllFilter(this.state.readShow.read);
   },
 
-  onChangeSearch: function(event) {
-  /*  event.preventDefault();
+  onChangeSearch: function(event) { ////******
+   event.preventDefault();
      // var value = event.target.value;
       var value = React.findDOMNode(this.refs.search).value;
     console.log("v "+value)
-       FilterActions.search(value);*/
+       FilterActions.search(value);
   },
 
   render: function() {
