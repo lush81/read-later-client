@@ -12,14 +12,11 @@ var FilterStore = Reflux.createStore({
       read: true,
       text : ''
     }
-  /* this.search={   //****
-     text : ''
-   }*/
   },
  
   showAllFilter: function(value) {
     this.filtersReadShow.read=value;
-     this.trigger(this.filtersReadShow);
+    this.trigger(this.filtersReadShow);
   },
  onSearch: function(value){  //****
     this.filtersReadShow.text = value;
@@ -29,9 +26,6 @@ var FilterStore = Reflux.createStore({
     return this.filtersReadShow;
   },
 
- /*getSearch:function(){   //****
-    return  this.search;
-  }*/
-  });
+});
 
 module.exports = FilterStore;

@@ -20,8 +20,7 @@ var ListArticlesComponent = React.createClass({
       var artListObj = this.state.articles;
 
       for (var key in artListObj){
-         //articlesListObj[key].id = key;///***
-           artListArray.push(artListObj[key]);
+        artListArray.push(artListObj[key]);
        }
 
       var articlesList = artListArray.map(function(article, id){

@@ -7,7 +7,6 @@ var Link = Router.Link;
 var FilterStore = require('../../stores/FilterStore');
 var FilterActions = require('../../actions/FilterActions');
 var FirebaseActions = require('../../actions/FirebaseActions');
-//var ListArticlesActions = require('../../actions/ListArticlesActions');
 
 var HeaderForListArticles = React.createClass({
    mixins: [Reflux.connect(FilterStore)],
@@ -33,13 +32,11 @@ var HeaderForListArticles = React.createClass({
   },
 
   onChangeSearch: function(event) { ////******
-   event.preventDefault();
-     // var value = event.target.value;
-      var value = React.findDOMNode(this.refs.search).value;
+    event.preventDefault();
+    var value = React.findDOMNode(this.refs.search).value;
     console.log("v "+value)
-   // FilterActions.search(value);
-     this.state.readShow.text=value;
-       FilterActions.search(this.state.readShow.text);
+    this.state.readShow.text=value;
+    FilterActions.search(this.state.readShow.text);
   },
 
   render: function() {
