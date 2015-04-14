@@ -31,9 +31,7 @@ var FirebaseStore = Reflux.createStore({
     request.post('https://read-later-server.herokuapp.com/scraper')
       .type('form')
       .send({url:url})
-      .end(function(err, res){
-      this.trigger(res['text']);
-    }.bind(this))
+      .end()
   },
   
   

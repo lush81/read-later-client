@@ -11,10 +11,10 @@ var ListArticlesStore = Reflux.createStore({
   init: function() {
     this.listenTo(FirebaseStore, this.receiveArticles); 
     this.listenTo(FilterStore, this.showAll); 
-    this.listenTo(FilterStore, this.search); //**
+  // this.listenTo(FilterStore, this.search); //**
     
     this.filtersRead = FilterStore.getFilters();
-    this.searchText = FilterStore.getSearch();//**
+ //  this.searchText = FilterStore.getSearch();//**
     this.articles = {};
     
   },
@@ -25,22 +25,23 @@ var ListArticlesStore = Reflux.createStore({
     this.trigger(this.getListArticles());
   },
   
-  showAll: function(filtersRead) { 
+  showAll: function() { 
     //console.log("f  "+JSON.stringify(filtersRead))
-    this.filtersRead = filtersRead;
+  //this.filtersRead = filtersRead;
     this.trigger(this.getListArticles())
   },
   
-  search: function(searchText) { //*****
+ /* search: function(searchText) { //*****
    //  console.log('st '+searchText)
     this.searchText.text= searchText;
     this.trigger(this.getListArticles())
-  },
+  },*/
     
   parseListArticles:function(){
     var articlesArray = [];
     var articlesObj = this.articles;
-   
+   var searchArr=[];
+    
     for (var key in articlesObj){
         articlesObj[key].id = key;
         articlesArray.push(articlesObj[key]);
@@ -51,29 +52,42 @@ var ListArticlesStore = Reflux.createStore({
   getListArticles: function() {
     var objRead = this.filtersRead;
     var articlesArr=this.parseListArticles();
+  // var objSearch = this.searchText;
+    var articlesReturn;
+    var articlesRead;
+     console.log(JSON.stringify(objRead))
+    
+    if(!objRead.read){
+     articlesRead=articlesArr.filter(function(a){
+            return a.read !== objRead.read
+        }); 
+    //  articlesReturn=articlesRead;
+       // return articlesRead;
      
-     if(objRead.read){
-        articlesArr= articlesArr.filter(function(a){
-        return a.read !== objRead.read}); 
-     }
+    }else{
+      articlesRead=articlesArr
+    }
     
     var searchArr=[];            ///*******
-    var objSearch = this.searchText;
-    var text = objSearch.text.toUpperCase();
    
-     if(objSearch.text===''){
-        articlesArr=articlesArr;
-     }else{
-        for(var j=0; j<articlesArr.length; j++){
-           if (articlesArr[j].title.toUpperCase().indexOf(text)!==-1){
-             searchArr.push(articlesArr[j]);
+   // var text = objSearch.text;
+   // console.log('t'+objRead.text)
+     if(objRead.text!==''){
+        console.log('t'+objRead.text)
+       console.log('444')
+        for(var j=0; j<articlesRead.length; j++){
+      //   var text1=text.toUpperCase();
+        //  console.log(text1)
+         
+           if (articlesRead[j].title.toUpperCase().indexOf(objRead.text.toUpperCase())!==-1){
+             searchArr.push(articlesRead[j]);
           }
         }
-      return searchArr;
+      articlesReturn= searchArr;
   
-     }                                 //****
-   return  articlesArr;
-    
+     }  else{  articlesReturn=articlesRead;}                             //****
+   
+    return  articlesReturn;
   },
   
   getArticle: function(id1) {

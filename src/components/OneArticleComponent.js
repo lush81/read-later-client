@@ -10,8 +10,14 @@ var ListArticlesStore = require('../stores/ListArticlesStore');
 
 var OneArticleComponent = React.createClass({
   mixins: [
-    Reflux.listenTo(ListArticlesStore, 'article'),
+    Reflux.listenTo(ListArticlesStore, 'onArticleChange'),
   ],
+  
+  onArticleChange: function() {
+    this.setState({
+      article: ListArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId'])
+    });    
+  },
  
   getInitialState: function() {
     return {

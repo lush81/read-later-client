@@ -10,29 +10,28 @@ var FilterStore = Reflux.createStore({
   init: function() {
       this.filtersReadShow = {
       read: true,
+      text : ''
     }
-    this.search={   //****
+  /* this.search={   //****
      text : ''
-   }
+   }*/
   },
  
-  showAllFilter: function(readShow) {
-   // console.log(readShow)
-     this.filtersReadShow.read=readShow;
+  showAllFilter: function(value) {
+    this.filtersReadShow.read=value;
      this.trigger(this.filtersReadShow);
   },
-  onSearch: function(value){  //****
-     this.search = value;
-     this.trigger(this.search);
-     
-   },
+ onSearch: function(value){  //****
+    this.filtersReadShow.text = value;
+     this.trigger(this.filtersReadShow);
+  },
   getFilters: function() {
     return this.filtersReadShow;
   },
 
-  getSearch:function(){   //****
+ /*getSearch:function(){   //****
     return  this.search;
-  }
+  }*/
   });
 
 module.exports = FilterStore;

@@ -14,7 +14,8 @@ var HeaderForListArticles = React.createClass({
 
   getInitialState: function() {
      return {
-        readShow : FilterStore.getFilters()
+        readShow : FilterStore.getFilters(),
+       // text: ''
      };
   },
 
@@ -36,7 +37,9 @@ var HeaderForListArticles = React.createClass({
      // var value = event.target.value;
       var value = React.findDOMNode(this.refs.search).value;
     console.log("v "+value)
-       FilterActions.search(value);
+   // FilterActions.search(value);
+     this.state.readShow.text=value;
+       FilterActions.search(this.state.readShow.text);
   },
 
   render: function() {
